@@ -1,0 +1,72 @@
+<meta charset="utf-8">
+<title>Crimson Vault</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="cards.css">
+<link rel="stylesheet" href="features.css">
+<link rel="stylesheet" href="events.css">
+<div class="bgfx"></div>
+
+<div id="auth" class="auth" hidden>
+  <div class="ashow" id="ashow"></div>
+  <div class="authbox">
+    <div class="logo xl"><i data-ic="cards"></i><span>Crimson <b>Vault</b></span></div>
+    <ul class="perks">
+      <li><i data-ic="cards-playing"></i>12,000+ collectible cards across 8 rarities</li>
+      <li><i data-ic="gift-outline"></i>Daily rewards with a 7 day streak</li>
+      <li><i data-ic="cash"></i>Sell, print or keep every card you pull</li>
+    </ul>
+    <div class="tabs2" role="tablist">
+      <button id="tabSign" class="on" type="button"><i data-ic="account-plus"></i>Sign up</button>
+      <button id="tabLog" type="button"><i data-ic="login"></i>Log in</button>
+    </div>
+    <form id="authForm" autocomplete="off">
+      <label for="uName">Username</label>
+      <input id="uName" maxlength="20" required placeholder="e.g. NightPull">
+      <label for="uPass">Password</label>
+      <input id="uPass" type="password" minlength="4" required placeholder="At least 4 characters">
+      <label id="pass2Label" for="uPass2">Confirm password</label>
+      <input id="uPass2" type="password" placeholder="Repeat password">
+      <p id="authErr" class="err" role="alert"></p>
+      <button id="authGo" class="btn big" type="submit">Create account</button>
+    </form>
+    <p class="tiny muted" style="margin:14px 0 0"><span id="modeNote"></span> New players start with 1,000 coins and 2 Starter packs.</p>
+  </div>
+</div>
+
+<div id="app" hidden>
+  <div id="banner" class="banner" hidden><span></span></div>
+  <header class="top">
+    <div class="logo"><i data-ic="cards"></i><span>Crimson <b>Vault</b></span></div>
+    <nav id="nav">
+      <button data-v="packs" class="on" type="button"><i data-ic="cards"></i><span>Packs</span></button>
+      <button data-v="daily" type="button"><i data-ic="gift-outline"></i><span>Rewards</span></button>
+      <button data-v="market" type="button"><i data-ic="store"></i><span>Market</span></button>
+      <button data-v="inv" type="button"><i data-ic="bag-personal"></i><span>Inventory</span></button>
+      <button data-v="ranks" type="button"><i data-ic="podium"></i><span>Ranks</span></button>
+      <button data-v="admin" type="button"><i data-ic="shield-lock"></i><span>Admin</span></button>
+    </nav>
+    <div class="who"><span class="coins"><i data-ic="cash"></i><span id="coinBox">0</span></span><span class="av" id="av"></span><button id="logout" class="link" type="button" aria-label="Log out"><i data-ic="logout"></i><span class="name">Log out</span></button></div>
+  </header>
+  <main id="view"></main>
+</div>
+
+<div id="evbar" class="evbar" hidden></div>
+<div id="stage" class="stage" hidden></div>
+<div id="toast" class="toast" role="status"></div>
+
+<script src="supabase-config.js"></script>
+<script>if(window.SUPABASE_CONFIG&&!window.__sbReady){window.__sbReady=new Promise(function(r){window.__sbResolve=r})}</script>
+<script src="icons.js"></script>
+<script src="icons2.js"></script>
+<script src="core.js"></script>
+<script src="admin.js"></script>
+<script src="ui.js"></script>
+<script src="ui2.js"></script>
+<script src="features.js"></script>
+<script src="views.js"></script>
+<script src="events.js"></script>
+<script src="online.js"></script>
+<script src="supabase-backend.js"></script>
+<script src="admin2.js"></script>

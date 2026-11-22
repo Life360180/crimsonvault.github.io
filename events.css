@@ -1,0 +1,49 @@
+/* Site events: layers, memes and page-wide effects. */
+#fx{position:fixed;inset:0;z-index:45;pointer-events:none;overflow:hidden}
+.fxcv{position:absolute;inset:0;width:100%;height:100%}
+.banner{margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px)));background:linear-gradient(90deg,#7d0a18,#e11d33,#7d0a18);color:#fff;font-weight:700;letter-spacing:.06em;text-transform:uppercase;overflow:hidden;white-space:nowrap;padding:7px 0;border-bottom:1px solid #ff7585}
+.banner span{display:inline-block;padding-left:100%;animation:marq 16s linear infinite}
+@keyframes marq{to{transform:translateX(-100%)}}
+.evbar{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:35;display:flex;flex-wrap:wrap;gap:6px;max-width:min(560px,calc(100vw - 32px))}
+.evchip{display:inline-flex;align-items:center;gap:7px;background:#12060af0;border:1px solid var(--red2);border-radius:99px;padding:4px 12px 4px 9px;font-size:12px;box-shadow:0 6px 20px #000a,0 0 18px #e11d3340}
+.evchip .i{color:var(--red2);width:16px;height:16px}.evchip em{font-style:normal;color:var(--gold);font-variant-numeric:tabular-nums}
+@media(max-width:760px){.evbar{bottom:calc(86px + env(safe-area-inset-bottom,0px))}}
+/* cat memes */
+.memepop{position:absolute;width:150px;aspect-ratio:1;border-radius:10px;display:grid;place-items:center;background:linear-gradient(160deg,hsl(var(--h) 75% 58%),hsl(calc(var(--h) + 50) 70% 24%));box-shadow:0 10px 30px #000a,0 0 0 3px #fff;overflow:hidden;--r:0deg}
+.memepop .i{width:58%;height:58%;color:hsl(var(--h) 35% 12%);filter:drop-shadow(0 3px 0 #ffffff40)}
+.memepop .mtop,.memepop .mbot{position:absolute;left:4px;right:4px;text-align:center;font:900 19px/1 Impact,'Big Shoulders Display','Arial Narrow',sans-serif;color:#fff;text-transform:uppercase;text-shadow:-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000,2px 2px 0 #000,0 3px 0 #000}
+.memepop .mtop{top:6px}.memepop .mbot{bottom:6px}
+.memepop.pop{rotate:var(--r);animation:memepop 3s ease-in-out forwards}
+@keyframes memepop{0%{scale:0;opacity:0}12%{scale:1.15;opacity:1}20%{scale:1}85%{scale:1;opacity:1}100%{scale:.4;opacity:0}}
+.memepop.bounce{left:0;top:0}
+.catfall{position:absolute;top:-80px;width:var(--s);height:var(--s);color:var(--c);animation:catfall linear forwards;filter:drop-shadow(0 3px 0 #000a)}
+.catfall .i{width:100%;height:100%}
+@keyframes catfall{to{transform:translateY(calc(100vh + 120px)) rotate(var(--rot))}}
+/* coins, scare, disco */
+.coinfall{position:absolute;top:-60px;width:46px;height:46px;display:grid;place-items:center;border:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe9a8,#e0a21c 70%);color:#5a3a00;font-weight:800;pointer-events:auto;cursor:pointer;animation:catfall linear forwards;--rot:360deg;box-shadow:0 4px 14px #0009,0 0 18px #ffc24a99}
+.coinfall .i{width:26px;height:26px}.coinfall.got{animation:none;top:auto;scale:1.3;opacity:.8;transition:.4s}
+.scare{position:absolute;inset:0;display:grid;place-items:center;background:#e11d33;animation:scare 1s ease-out forwards}
+.scare .i{width:min(70vw,70vh);height:min(70vw,70vh);color:#000;filter:drop-shadow(0 0 40px #fff)}
+@keyframes scare{0%{opacity:0;scale:.5}10%{opacity:1;scale:1.05}60%{opacity:1;scale:1}100%{opacity:0;scale:1.3}}
+.disco{position:absolute;inset:0;opacity:.35;mix-blend-mode:screen;background:conic-gradient(from var(--spin),#ff4d5e,#ffc24a,#3ddc84,#3ea0ff,#b66bff,#ff4d5e);animation:spin 4s linear infinite}
+/* page-wide effects */
+html.ev-quake main,html.ev-quake .logo,html.ev-quake .who{animation:quake .35s linear infinite}
+@keyframes quake{0%{translate:0 0}20%{translate:-5px 3px}40%{translate:4px -4px}60%{translate:-3px -2px}80%{translate:5px 4px}100%{translate:0 0}}
+html.ev-upside main,html.ev-upside .logo,html.ev-upside .who,html.ev-upside nav button{rotate:180deg}
+html.ev-mirror main{transform:scaleX(-1)}
+html.ev-drunk main{animation:sway 4s ease-in-out infinite;filter:blur(1.3px)}
+@keyframes sway{0%,100%{transform:rotate(-1.2deg) translateX(-8px)}50%{transform:rotate(1.2deg) translateX(8px)}}
+html.ev-glitch main{animation:glitch 1.4s steps(1) infinite}
+html.ev-glitch h1,html.ev-glitch h2,html.ev-glitch h3,html.ev-glitch b{text-shadow:2px 0 #ff00ff,-2px 0 #00ffff}
+@keyframes glitch{0%,100%{transform:none;filter:none}10%{transform:translate(-6px,2px) skewX(4deg);filter:hue-rotate(90deg)}12%{transform:none;filter:none}50%{transform:translate(5px,-2px);clip-path:inset(20% 0 40% 0)}52%{clip-path:none;transform:none}80%{transform:translate(-3px,0) skewX(-3deg);filter:hue-rotate(-90deg) saturate(2)}82%{transform:none;filter:none}}
+html.ev-rainbow main,html.ev-rainbow .bgfx{animation:rbh 5s linear infinite}
+@keyframes rbh{to{filter:hue-rotate(360deg)}}
+html.ev-comic *{font-family:'Comic Sans MS','Comic Neue','Chalkboard SE','Comic Sans',cursive!important}
+/* admin events */
+.evtools{display:grid;grid-template-columns:200px 1fr;gap:6px 16px;align-items:end}.evtools .facts{grid-column:1/-1;margin:6px 0 0}
+.evgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px}
+.evcard{display:flex;align-items:center;gap:14px;background:#ffffff06;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.evcard .eic{width:30px;height:30px;color:var(--red2)}
+.evcard.live{border-color:var(--ok);box-shadow:0 0 22px #3ddc8422}.evcard.live .eic{color:var(--ok)}
+.livet{color:var(--ok);font-weight:700;font-size:11px;letter-spacing:.08em}
+@media(max-width:640px){.evtools{grid-template-columns:1fr}}

@@ -1,0 +1,112 @@
+/* Cards, foil packs and the pack-opening stage. */
+/* ---- card ---- */
+.card{--rc:#aaa;--h:0;--rot:0deg;position:relative;aspect-ratio:5/7;container-type:inline-size;border-radius:12px;padding:5px;background:linear-gradient(150deg,var(--rc),color-mix(in srgb,var(--rc) 28%,#000) 36%,color-mix(in srgb,var(--rc) 75%,#fff) 60%,color-mix(in srgb,var(--rc) 30%,#000));box-shadow:0 0 0 1px #000,0 12px 26px #000a;transition:transform .2s ease-out,box-shadow .25s;transform-style:preserve-3d}
+.card .in{height:100%;border-radius:8px;background:linear-gradient(180deg,#140a0d,#080405);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.card .hd{padding:5cqw 6cqw 3cqw}
+.card .nm{display:block;font-family:var(--disp);font-weight:800;font-size:10.5cqw;line-height:1;letter-spacing:.05em;text-transform:uppercase;overflow-wrap:anywhere}
+.card .art{position:relative;flex:1;min-height:0;margin:0 4cqw;border-radius:6px;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 50% 42%,hsl(calc(355 + var(--h)),72%,30%),#0a0405 82%);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--rc) 55%,#000),inset 0 0 22px #000}
+.card .rays{position:absolute;inset:-45%;background:repeating-conic-gradient(from var(--rot),color-mix(in srgb,var(--rc) 24%,transparent) 0 6deg,transparent 6deg 18deg);mask:radial-gradient(circle,#000 0,transparent 68%);-webkit-mask:radial-gradient(circle,#000 0,transparent 68%);opacity:.7}
+.card .orb{position:absolute;width:66%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--rc) 48%,transparent),transparent 68%)}
+.card .glyph{position:relative;width:54%;height:54%;color:#fff;filter:drop-shadow(0 0 7px var(--rc)) drop-shadow(0 5px 6px #000c)}
+.card .stars{display:flex;justify-content:center;padding:3cqw 0 1cqw;color:var(--rc)}.card .stars .i{width:7.5cqw;height:7.5cqw}
+.card .ft{display:flex;justify-content:space-between;padding:0 6cqw 4.5cqw;font-size:6.4cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--rc);font-weight:700}
+.card .ct{position:absolute;top:9px;right:9px;background:#000d;border:1px solid var(--rc);border-radius:99px;font-size:11px;font-weight:700;padding:0 8px;z-index:2}
+.card .foilfx{position:absolute;inset:0;border-radius:12px;pointer-events:none;opacity:0;mix-blend-mode:color-dodge;background:radial-gradient(circle at var(--mx) var(--my),#fffa,transparent 42%),linear-gradient(115deg,transparent 20%,#ff3b4f55 36%,#ffc24a55 44%,#3ddc8455 52%,#3ea0ff55 60%,#b66bff55 68%,transparent 82%) var(--mx) 0/260% 100%}
+.card.holo .foilfx{opacity:.42;animation:shim 5s ease-in-out infinite alternate}
+@keyframes shim{from{--mx:10%;--my:20%}to{--mx:90%;--my:80%}}
+.card.r4{box-shadow:0 0 0 1px #000,0 12px 26px #000a,0 0 26px color-mix(in srgb,var(--rc) 45%,transparent)}
+.card.r5{box-shadow:0 0 0 1px #000,0 12px 26px #000a,0 0 34px color-mix(in srgb,var(--rc) 70%,transparent);animation:aura 2.4s ease-in-out infinite alternate}
+@keyframes aura{to{box-shadow:0 0 0 1px #000,0 12px 26px #000a,0 0 52px color-mix(in srgb,var(--rc) 90%,transparent)}}
+.card.r6{background:conic-gradient(from var(--spin),#ff4d5e,#ffc24a,#3ddc84,#3ea0ff,#b66bff,#ff4d5e);animation:spin 6s linear infinite;box-shadow:0 0 0 1px #000,0 0 40px #ffd98a66}
+.card.r6 .stars{color:#ffe7a8}.card.r6 .ft{color:#ffe7a8}
+@keyframes spin{to{--spin:360deg}}
+.card.big{width:min(200px,50vw)}.card.static{transition:none}
+@media(hover:hover){.cards .card:hover,.ashow .card:hover{transform:perspective(650px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-5px) scale(1.04);z-index:3}.cards .card:hover .foilfx{animation:none;opacity:.75}}
+/* ---- foil pack ---- */
+.foil{--c1:#c4162c;--c2:#2a0b10;--w:150px;position:relative;width:var(--w);font-size:calc(var(--w)/15);aspect-ratio:3/4.3;border-radius:.8em;background:linear-gradient(155deg,var(--c1),var(--c2) 85%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.3em;overflow:hidden;box-shadow:0 1.8em 3.6em #000b,inset 0 0 0 1px #ffffff38;color:#fff;transition:transform .25s ease-out;flex:none}
+.foil::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,#ffffff12 0 2px,transparent 2px 1.4em),radial-gradient(circle at 28% 18%,#ffffff55,transparent 48%),radial-gradient(circle at 80% 100%,#0009,transparent 60%)}
+.foil .crimp{position:absolute;left:0;right:0;height:1.7em;background:repeating-linear-gradient(90deg,#00000066 0 2px,#ffffff44 2px 4px),linear-gradient(#ffffff55,#0006)}
+.foil .crimp.t{top:0}.foil .crimp.b{bottom:0;transform:scaleY(-1)}
+.foil .emb{position:relative;width:6.6em;height:6.6em;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#0007,#0000 72%);border:.2em solid #ffffffa0;box-shadow:0 0 0 .5em #ffffff20,0 0 3em var(--c1),inset 0 0 1.6em #0008}
+.foil .emb .i{width:3.6em;height:3.6em;filter:drop-shadow(0 .2em .3em #000a)}
+.foil .pn{position:relative;font-family:var(--disp);font-weight:900;font-size:2.9em;line-height:1;letter-spacing:.14em;text-transform:uppercase;text-shadow:0 .08em 0 #0009,0 0 .6em var(--c1)}
+.foil .ps{position:relative;font-size:.85em;letter-spacing:.32em;opacity:.85;font-weight:600}
+.foil .shine{position:absolute;inset:-60%;background:linear-gradient(105deg,transparent 42%,#ffffff55 50%,transparent 58%);transform:translateX(-70%);animation:sheen 5s ease-in-out infinite}
+@keyframes sheen{0%,55%{transform:translateX(-70%)}100%{transform:translateX(70%)}}
+.pk .foil{animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{translate:0 -6px}}
+@media(hover:hover){.pk:hover .foil{transform:perspective(600px) rotateY(-10deg) rotateX(4deg) scale(1.05)}}
+/* ---- stage ---- */
+.stage{position:fixed;inset:0;z-index:50;overflow:auto;display:flex;flex-direction:column;align-items:center;padding:calc(26px + env(safe-area-inset-top,0px)) 16px 40px}
+.stage{background:radial-gradient(ellipse at 50% 36%,#43091a 0,#14050a 55%,#050203 85%)}
+.stage .sbg{position:fixed;inset:-30%;background:repeating-conic-gradient(from 0deg at 50% 38%,#e11d3318 0 5deg,transparent 5deg 15deg);animation:rot 60s linear infinite;mask:radial-gradient(circle at 50% 38%,#000,transparent 60%);-webkit-mask:radial-gradient(circle at 50% 38%,#000,transparent 60%);pointer-events:none}
+@keyframes rot{to{transform:rotate(360deg)}}
+.embers{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.embers i{position:absolute;bottom:-10px;width:5px;height:5px;border-radius:50%;background:#ff6b3d;box-shadow:0 0 10px #ff4d5e;opacity:0;animation:rise linear infinite}
+@keyframes rise{0%{opacity:0;transform:translate(0,0)}15%{opacity:.9}100%{opacity:0;transform:translate(var(--dx),-105vh)}}
+.stage>*:not(.sbg):not(.embers){position:relative;z-index:1}
+.stage h2{font-size:34px;font-weight:900;text-transform:uppercase;letter-spacing:.14em}
+.tearbox{position:relative;width:min(220px,60vw);aspect-ratio:3/4.3;margin:5vh 0 24px;cursor:pointer;animation:wob 1.6s ease-in-out infinite}
+.tearbox .foil{--w:min(220px,60vw);position:absolute;inset:0}
+.tearbox .foil.up{clip-path:inset(0 0 56% 0)}.tearbox .foil.dn{clip-path:inset(44% 0 0 0)}
+.tearbox .glow{position:absolute;left:50%;top:44%;width:30px;height:30px;margin:-15px;border-radius:50%;background:#fff;box-shadow:0 0 80px 40px #ff4d5e;opacity:0;pointer-events:none}
+.tearbox.tear{animation:none}
+.tearbox.tear .up{animation:flyup .9s ease-in forwards}.tearbox.tear .dn{animation:flydn .9s .08s ease-in forwards}.tearbox.tear .glow{animation:burst .9s forwards}
+@keyframes wob{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg) scale(1.03)}}
+@keyframes flyup{to{transform:translate(-90px,-170px) rotate(-34deg);opacity:0}}
+@keyframes flydn{to{transform:translateY(190px) rotate(6deg);opacity:0}}
+@keyframes burst{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(14)}}
+.flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;animation:fl .7s;z-index:70}@keyframes fl{0%{opacity:.85}100%{opacity:0}}
+.hint{color:var(--mut);margin:6px 0 0;display:flex;gap:8px;align-items:center}
+.hand{display:flex;flex-wrap:wrap;gap:26px 18px;justify-content:center;max-width:1040px;margin-top:20px}
+.slot{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;animation:deal .7s cubic-bezier(.2,.9,.3,1.2) backwards}
+@keyframes deal{from{opacity:0;transform:translateY(-120px) scale(.4) rotate(-14deg)}}
+.flip{perspective:1000px;width:min(190px,41vw);aspect-ratio:5/7;cursor:pointer;position:relative}
+.flip .fi{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.flip.open .fi{transform:rotateY(180deg)}
+.flip .fr,.flip .bk{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.flip .fr{transform:rotateY(180deg)}.flip .fr .card{width:100%}
+.flip .bk{border-radius:12px;border:1px solid #ff4d5e88;background:radial-gradient(circle at 50% 50%,#5a0c1a,#14050a 75%),#14050a;display:grid;place-items:center;color:var(--red2);box-shadow:0 12px 26px #000a,inset 0 0 0 5px #0b0507,inset 0 0 0 6px #ff4d5e55}
+.flip .bk::before{content:"";position:absolute;inset:14px;border-radius:7px;background:repeating-linear-gradient(45deg,#ff4d5e14 0 6px,transparent 6px 12px)}
+.flip .bk .i{width:46px;height:46px;position:relative;filter:drop-shadow(0 0 12px #e11d33)}
+.flip:not(.open):hover .fi{transform:rotateY(-8deg) translateY(-6px)}
+.ringfx{position:absolute;left:50%;top:calc(min(190px,41vw)*.7);width:20px;height:20px;margin:-10px;border-radius:50%;border:3px solid var(--rc);opacity:0;pointer-events:none;z-index:3}
+.ringfx.go{animation:ring .9s ease-out}
+@keyframes ring{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(22)}}
+.stage.shake{animation:shk .5s}@keyframes shk{20%{transform:translate(-6px,3px)}40%{transform:translate(6px,-3px)}60%{transform:translate(-4px,-2px)}80%{transform:translate(4px,2px)}}
+.choice{display:flex;gap:5px;min-height:34px;align-items:center}
+.choice .done{display:inline-flex;gap:6px;align-items:center;color:var(--gold);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+.sheet{display:grid;grid-template-columns:repeat(auto-fill,63mm);gap:6mm;justify-content:start}
+.sheet .card{width:63mm;height:88mm;aspect-ratio:auto}
+.foil.sm{--w:112px}
+.gic{width:54px;height:54px;filter:drop-shadow(0 0 14px #e11d33)}
+.foil.sm{--w:112px}
+.gic{width:54px;height:54px;filter:drop-shadow(0 0 14px #e11d33)}
+
+/* Admin rarity: far beyond Divine. Spinning neon frame, code rain, scan beam, RGB glitch. */
+.card.r7{--rc:#39ff88;background:conic-gradient(from var(--spin),#39ff88,#00e5ff,#000,#ff2d55,#000,#39ff88,#fff,#39ff88);animation:spin 2.2s linear infinite,admglow 1.1s ease-in-out infinite alternate;z-index:1}
+.card.r7::before{content:"";position:absolute;inset:-9px;border-radius:20px;z-index:-1;pointer-events:none;background:conic-gradient(from calc(var(--spin) * -1),#39ff88,transparent 25%,#00e5ff,transparent 50%,#ff2d55,transparent 75%,#39ff88);filter:blur(14px);opacity:.75}
+.card.r7 .in{background:radial-gradient(ellipse at 50% 0,#07471f,#010a05 72%)}
+.card.r7 .in::before{content:"";position:absolute;left:0;right:0;top:-35%;height:35%;z-index:4;pointer-events:none;background:linear-gradient(180deg,transparent,#39ff8866 72%,#e2fff0dd);mix-blend-mode:screen;animation:admbeam 2.2s linear infinite}
+.card.r7 .in::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:repeating-linear-gradient(0deg,#39ff8820 0 2px,transparent 2px 5px);mix-blend-mode:screen}
+.card.r7 .art{background:radial-gradient(circle at 50% 45%,#0c6a31,#010804 80%);box-shadow:inset 0 0 0 1px #39ff88,inset 0 0 30px #39ff8866}
+.card.r7 .art::before{content:"10 01 1 0 110 001 10\A 01 1 0 110 001 10 01\A 1 0 110 001 10 01 1\A 0 110 001 10 01 1 0\A 110 001 10 01 1 0 110\A 001 10 01 1 0 110 001\A 10 01 1 0 110 001 10\A 01 1 0 110 001 10 01\A 1 0 110 001 10 01 1\A 0 110 001 10 01 1 0\A 110 001 10 01 1 0 110\A 001 10 01 1 0 110 001\A 10 01 1 0 110 001 10\A 01 1 0 110 001 10 01";white-space:pre;position:absolute;left:0;right:0;top:0;text-align:center;font:700 5.2cqw/1.5 ui-monospace,Consolas,monospace;letter-spacing:.3em;color:#39ff8855;animation:admrain 5s linear infinite;pointer-events:none}
+.card.r7 .rays{background:repeating-conic-gradient(from var(--rot),#39ff8855 0 5deg,transparent 5deg 15deg);animation:spin 8s linear infinite;opacity:.9}
+.card.r7 .glyph{color:#eafff2;width:60%;height:60%;filter:drop-shadow(0 0 12px #39ff88) drop-shadow(0 0 26px #39ff88) drop-shadow(3px 0 0 #ff2d55) drop-shadow(-3px 0 0 #00e5ff);animation:admglitch 2.6s steps(1) infinite}
+.card.r7 .nm{color:#eafff2;text-shadow:0 0 10px #39ff88,2px 0 #ff2d55,-2px 0 #00e5ff;animation:admtxt 3s steps(1) infinite}
+.card.r7 .stars{color:#fff;filter:drop-shadow(0 0 5px #39ff88)}
+.card.r7 .ft{color:#39ff88;text-shadow:0 0 8px #39ff88}
+.card.r7 .foilfx{opacity:.5;mix-blend-mode:screen}
+@keyframes admglow{from{box-shadow:0 0 0 1px #000,0 0 30px #39ff88aa,0 0 60px #00e5ff55}to{box-shadow:0 0 0 1px #000,0 0 60px #39ff88,0 0 120px #39ff88aa,0 0 90px #ff2d5555}}
+@keyframes admbeam{to{transform:translateY(400%)}}
+@keyframes admrain{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+@keyframes admglitch{0%,90%,100%{transform:none}91%{transform:translate(-5%,2%) skewX(8deg)}93%{transform:translate(6%,-2%)}95%{transform:none}}
+@keyframes admtxt{0%,92%,100%{transform:none;opacity:1}93%{transform:translateX(-4%);opacity:.7}95%{transform:translateX(3%)}}
+/* Admin pull: full-screen takeover */
+.admfx{position:fixed;inset:0;z-index:72;display:grid;place-items:center;pointer-events:none;background:radial-gradient(circle,#39ff88cc,#00140a 70%);animation:admfx 2.4s ease-out forwards;overflow:hidden}
+.admfx::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,#00000055 0 2px,transparent 2px 5px)}
+.admfx b{position:relative;font:900 clamp(40px,13vw,170px)/.95 var(--disp,'Big Shoulders Display',Impact,sans-serif);letter-spacing:.06em;color:#eafff2;text-align:center;text-transform:uppercase;text-shadow:5px 0 #ff2d55,-5px 0 #00e5ff,0 0 40px #39ff88;animation:admshake .25s linear 6}
+.admfx small{position:absolute;bottom:22%;font:700 clamp(12px,2.4vw,24px) ui-monospace,Consolas,monospace;letter-spacing:.4em;color:#39ff88}
+@keyframes admfx{0%{opacity:0}8%{opacity:1}65%{opacity:1}100%{opacity:0}}
+@keyframes admshake{25%{translate:-10px 4px;skew:6deg}50%{translate:8px -5px}75%{translate:-6px -3px;skew:-5deg}}
+.stage.shake2{animation:shk2 1s}@keyframes shk2{10%{transform:translate(-14px,8px)}20%{transform:translate(14px,-8px)}30%{transform:translate(-12px,-6px)}40%{transform:translate(12px,6px)}60%{transform:translate(-8px,4px)}80%{transform:translate(6px,-4px)}}
